@@ -1,6 +1,6 @@
 # An Introduction to Interactive Programming in Python
 ## RICE University
-### Mark Addinall.  September 2015
+### Mark Addinall. January 2016 
 ----
 
 This class consists of two parts that are five and four weeks long, respectively. For most weeks, you will watch two sets of videos (part a and part b) and then complete one quiz for each set. The main task for each week is to complete a mini-project that is due along with the quizzes early Sunday morning. You will then be asked to assess your peer's mini-projects on the following Sunday-Wednesday.

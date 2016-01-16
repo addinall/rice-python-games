@@ -2,7 +2,7 @@
 # We want a... shrubbery!
 # Mark Addinall
 # Interactive Python Programming
-# May 2015
+# Dec 2015
 # Rice University - Coursera MOOC
 # Modify the print statement according to 
 # the mini-project instructions
