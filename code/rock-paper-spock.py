@@ -1,4 +1,5 @@
 # Mark Addinall
+# vim: set expandtab tabstop=4 shiftwidth=4 autoindent:
 # Interactive Python Programming
 # Jan 2016 
 # Rice University - Coursera MOOC
@@ -48,43 +49,106 @@
 # If you have trouble deriving the conditions for the clauses of this if/elif/else statement, 
 # we suggest reviewing the "RPSLS" video which describes a simple test for determine the winner of RPSLS.
 
+import random
+
+random.seed()                                       # use the system time to seed the deterministic
+                                                    # Mersenne Twister each time the program is executed
+
 #------------------------
 def name_to_number(name):
-    # delete the following pass statement and fill in your code below
+    ''' This function accepts a string as input
+        Returns an integer RANK as output
+        Returns -1 to indicate an error
+    '''
 
-    # convert name to number using if/elif/else
-    # don't forget to return the result!
+    uname = name.lower()                            # cater for silly capitals - lowercase mix
 
+    val = -1                                        # this will indicate an error in input
+
+                                                    # convert name to number using if/elif
+    if uname == 'rock':
+        val = 0
+    elif uname == 'spock':
+        val = 1
+    elif uname == 'paper':
+        val = 2
+    elif uname == 'lizard':
+        val = 3
+    elif uname == 'scissors':
+        val = 4
+
+    return val                                      # send it back
 
 
 #--------------------------
 def number_to_name(number):
-    # delete the following pass statement and fill in your code below
-    
-    # convert number to a name using if/elif/else
-    # don't forget to return the result!
-    
+    ''' This function accepts an integer as input
+        This integer should be in the range 0..4
+        We convert this RANK into a name and this becomes our output
+        If the RANK is bad, we return ERROR as name
+    '''
+        
+   
+    name = 'error'                                  # default if the input is wonky
+                                                    # convert number to a name using if/elif
+    if number == 0:
+        name = 'rock'
+    elif number == 1:
+        name = 'Spock'
+    elif number == 2:
+        name = 'paper'
+    elif number == 3:
+        name = 'lizard'
+    elif number == 4:
+        name = 'scissors'
+
+    return name                                     # send it back
 
 
 #------------------------
 def rpsls(player_choice): 
-    # delete the following pass statement and fill in your code below
-    
-    # print a blank line to separate consecutive games
+    '''  This in essence is the game
+        Input - The item chosen by the 'player' as a string'
+        Generates a random RANK for the computer to determine the item choice
+        Converts this RANK to a string
+        Informs the operator the player and the computer chosen items
+        Evaluates the two RANKS on the 'Spock wheel'
+        Informs the operator of the win/draw status of he outcome
+        Output - None
+    '''
 
-    # print out the message for the player's choice
 
-    # convert the player's choice to player_number using the function name_to_number()
+    print                                           # print a blank line to separate consecutive games
 
-    # compute random guess for comp_number using random.randrange()
+    print 'Player chooses ' + player_choice         # print out the message for the player's choice
 
-    # convert comp_number to comp_choice using the function number_to_name()
-    
-    # print out the message for computer's choice
+    player_number = name_to_number(player_choice)   # convert the player's choice to player_number using the 
+                                                    # function name_to_number()
+    if player_number == -1:
+        print 'Player choice ' + player_choice + ' illegal. Bye.'    
+                                                    # Bad choice of guess
+        return                                      # Bug out
+                                                    # otherwise ...
+    comp_number = random.randrange(0,5)             # compute random guess for comp_number using random.randrange()
+                                                    # [0 .. 4]
 
-    # compute difference of comp_number and player_number modulo five
+    comp_choice = number_to_name(comp_number)       # convert comp_number to comp_choice using the function number_to_name()
+    if comp_choice == 'error':                      # should never happen, but...
+        print 'Computer is Broken! NAME ERROR!'    
+        return                                      # bug out
+                                                    # otherwise ...
+    print 'Computer chooses ' + comp_choice         # print out the message for computer's choice
+                                            
+    result = (player_number - comp_number) % 5      # compute difference of comp_number and player_number modulo five
 
-    # use if/elif/else to determine winner, print winner message
+                                                    # use if/elif/else to determine winner, print winner message
+    if (result > 2):
+        print 'Computer wins!'
+    elif (result == 0):                             # this was not mentioned in the spec, but if the player and the
+        print 'Player and computer tie!'            # computer both choose the same item, it's a draw!
+    else:
+        print 'Player wins!'
+
 
     
 # do it Shelly!
@@ -95,6 +159,46 @@ rpsls("paper")
 rpsls("lizard")
 rpsls("scissors")
 
-# EOF
+# do it a few times to makes sure that the randomizer is randomizing
+
+rpsls("rock")
+rpsls("Spock")
+rpsls("paper")
+rpsls("lizard")
+rpsls("scissors")
+
+# -----------------------------------------
+
+rpsls("rock")
+rpsls("Spock")
+rpsls("paper")
+rpsls("lizard")
+rpsls("scissors")
+
+# -----------------------------------------
+
+rpsls("rock")
+rpsls("Spock")
+rpsls("paper")
+rpsls("lizard")
+rpsls("scissors")
+
+# -----------------------------------------
+
+rpsls("rock")
+rpsls("Spock")
+rpsls("paper")
+rpsls("lizard")
+rpsls("scissors")
+
+# end of five runs, although the player choice remained the same
+# the computer choice differs, meeting the specification
+# requirement for randomness
+
+# test error condition
+
+rpsls("muppet")
+
+# ---------------------- EOF --------------------
 
 
